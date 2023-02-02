@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +10,6 @@
      <!-- Boostrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>VPO</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
   </head>
   <body>
 	<!-- <script src="index.js"></script>-->
@@ -22,19 +22,47 @@
       </form>
     </div>
   </nav>
-  <h1 class="text-danger text-center">Welcome to VPO</h1>
-  <footer class="py-3 text-center sticky-bottom">
-
-    <!-- Twitter -->
-    <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/Amareteklay" aria-label="link to Amare's twitter account (opens in new tab)" target="_blank" role="button"><i class="fab fa-twitter"></i></a>
-
-    <!-- Linkedin -->
-    <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/amareteklay/" aria-label="link to Amare's linkedin profile (opens in new tab)" target="_blank" role="button"><i class="fab fa-linkedin-in"></i></a>
-
+  <div class="my-5 py-5">
+     <h1 class="text-danger text-center">Timber Price Areas</h1>
+    <div class="mx-5">
+      <table class="table">
+     <thead class="thead-dark">
+       <tr>
+         <th scope="col">MunId</th>
+         <th scope="col">name</th> 
+         <th scope="col">TL</th>
+         <th scope="col">TM</th>
+         <th scope="col">TH</th>
+         <th scope="col">PL</th>
+         <th scope="col">PM</th>
+         <th scope="col">PH</th>
+         <th scope="col">Tree</th>
+       </tr>
+     </thead>
+     <tbody>
+      {% for i in df.itertuples %}
+       <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{i.name}}</td>
+         <td>{{i.TL}}</td>
+         <td>{{i.TM}}</td>
+         <td>{{i.TH}}</td>
+         <td>{{i.PL}}</td>
+         <td>{{i.PM}}</td>
+         <td>{{i.PH}}</td>
+         <td>{{i.Tree}}</td>
+       </tr>
+       {% endfor %}
+     </tbody>
+   </table>
+    </div>
+ </div>
+ 
+  <footer class="py-3 text-center sticky-bottom mb-0">
     <!-- Github -->
     <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Amareteklay" aria-label="link to Amare's github account (opens in new tab)" target="_blank" role="button"><i class="fab fa-github"></i></a>
-    <div class="border-top">
-        <p class="small"><i class="far fa-copyright"></i> 2023</p>
+    <div class="border-top bg-dark">
+        <p class="small text-white"><i class="far fa-copyright"></i> 2023</p>
     </div>
 </footer>
 </body>

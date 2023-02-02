@@ -1,0 +1,11 @@
+body {
+    background-color: aqua;
+}
+
+#footer {
+    width: 100% !important;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    height: 140px;
+}
