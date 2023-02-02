@@ -10,13 +10,13 @@ def home(request):
     df = pd.read_excel('data/municipality_list.xlsx')
     for p in ['TL', 'TM', 'TH', 'PL', 'PM', 'PH']:
         df[p] = ''
-    muns = [i for i in range(1, 5)]
+    muns = [i for i in range(1, 291)]
     trees = [606, 607]
     df['Tree'] = ''
     response = []
     for tree in trees:
         for mun in muns:
-            df.iloc[mun-1,8] = tree
+            df['Tree'] = tree
             resp = requests.get(f"https://virkesborsen.se/price-api/avg-price?municipality={mun}&tree={tree}", headers={"Authorization": "Basic YW1hcmUudGVzdEB2aXJrZXNib3JzZW4uc2U6c3R3STB6NExONTlTc1dSR3htYWM="}).json()
             response.append(resp)
             df.iloc[mun-1,2] = resp['timber_low']
@@ -26,4 +26,6 @@ def home(request):
             df.iloc[mun-1,6] = resp['pulp_medium']
             df.iloc[mun-1,7] = resp['pulp_high']
     df.to_csv('data/price_data.csv')
-    return render(request, 'prices/home.html', {'df':df})
+    price_cat = df.nunique()
+    print(price_cat)
+    return render(request, 'prices/home.html', {'df':df, 'price':price_cat})
